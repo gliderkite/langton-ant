@@ -4,9 +4,9 @@
 
 using namespace System;
 
-namespace LangtonAntEngine {
-
-	public ref class Class1
+namespace lant 
+{
+	public ref class LAntEngine
 	{
 		// TODO: Add your methods for this class here.
 	};
