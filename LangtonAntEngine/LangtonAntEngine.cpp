@@ -34,7 +34,7 @@ LAntEngine::LAntEngine(IntPtr hostPtr)
 	pGraphics = new vector<unique_ptr<Graphic>>();
 	pGraphics->reserve(0xFFFF);
 	// add the ant
-	pGraphics->emplace_back(new Ant(pGraphicEngine->get_device_context()));
+	pGraphics->emplace_back(new Ant(pGraphicEngine->get_device_context(), eDirection::Right, 10));
 	pAnt = dynamic_cast<Ant*>(pGraphics->front().get());
 	assert(pAnt);
 	// create the cells map
@@ -131,9 +131,13 @@ void LAntEngine::Step()
 	At a white square, turn 90° right, flip the color of the square, move forward one unit
 	At a black square, turn 90° left, flip the color of the square, move forward one unit */
 
+	static const auto delta = 30.f;
+	static const auto deltadiv2 = 15.f;
+
+	// get the ant offset
 	auto offset = pAnt->get_offset();
-	offset.x -= 15;
-	offset.y -= 15;
+	offset.x -= deltadiv2;
+	offset.y -= deltadiv2;
 	const auto key = make_pair(offset.x, offset.y);
 	const auto it = pCells->find(key);
 
@@ -141,10 +145,10 @@ void LAntEngine::Step()
 	{
 		// white (empty) square
 		pAnt->turn_right();
-		pAnt->move_forward(30, 30);
+		pAnt->move_forward(delta, delta);
 
 		// add the cell to the map
-		pGraphics->emplace(pGraphics->begin(), new Cell(pGraphicEngine->get_device_context(), offset, 30));
+		pGraphics->emplace(pGraphics->begin(), new Cell(pGraphicEngine->get_device_context(), offset, delta));
 		const auto cell = dynamic_cast<Cell*>(pGraphics->front().get());
 		assert(cell);
 		pCells->emplace(key, cell);
@@ -153,8 +157,9 @@ void LAntEngine::Step()
 	{
 		// black square
 		pAnt->turn_left();
-		pAnt->move_forward(30, 30);
+		pAnt->move_forward(delta, delta);
 
+		// find the cell graphic element
 		auto i = pGraphics->begin();
 		for (; i != pGraphics->end(); ++i)
 		{
@@ -162,11 +167,9 @@ void LAntEngine::Step()
 				break;
 		}
 
-		if (i != pGraphics->end())
-		{
-			// remove the cell
-			pGraphics->erase(i);
-			pCells->erase(it);
-		}
+		assert(i != pGraphics->end());
+		// remove the cell
+		pGraphics->erase(i);
+		pCells->erase(it);
 	}
 }

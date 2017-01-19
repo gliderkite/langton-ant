@@ -12,8 +12,7 @@ namespace lant
 	class Cell final : public gengine::Shape
 	{
 	public:
-
-
+		
 
 		/// <summary>
 		/// Default constructor.

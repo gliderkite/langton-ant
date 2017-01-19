@@ -14,6 +14,7 @@ namespace lant
 	/// <summary>
 	/// Langton's ant engine.
 	/// </summary>
+	/// <remarks>https://en.wikipedia.org/wiki/Langton's_ant</remarks>
 	public ref class LAntEngine sealed
 	{
 
@@ -89,7 +90,6 @@ namespace lant
 		/// </summary>
 		/// <returns></returns>
 		float GetZoom();
-
 
 		/// <summary>
 		/// Go to the next generation step.

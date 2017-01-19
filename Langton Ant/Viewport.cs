@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-namespace lant
+namespace Direct2DInterop
 {
     /// <summary>
     /// Build Window Core delegate,

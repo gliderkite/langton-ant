@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace lant
+namespace Direct2DInterop
 {
     /// <summary>
     /// P/Invoke functions.

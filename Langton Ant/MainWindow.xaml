@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:lant"
+        xmlns:d2d="clr-namespace:Direct2DInterop"
         xmlns:lant="clr-namespace:lant;assembly=LangtonAntEngine"
         Title="Langton's Ant" Height="500" Width="700" Icon="logo.png">
     
     <Grid>
-        <local:Viewport x:Name="Viewport" BuildWindowCoreCompleted="Viewport_BuildWindowCoreCompleted" />
+        <d2d:Viewport x:Name="Viewport" BuildWindowCoreCompleted="Viewport_BuildWindowCoreCompleted" />
     </Grid>
     
 </Window>

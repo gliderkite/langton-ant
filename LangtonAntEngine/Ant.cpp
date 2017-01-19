@@ -4,9 +4,9 @@ using namespace lant;
 
 
 
-Ant::Ant(ID2D1RenderTarget* pRenderTarget)
-	: shape(D2D1::Ellipse(D2D1::Point2F(0, 0), 10, 10)),
-	direction{ eDirection::Right }
+Ant::Ant(ID2D1RenderTarget* pRenderTarget, eDirection dir, float radius)
+	: shape(D2D1::Ellipse(D2D1::Point2F(0, 0), radius, radius)),
+	direction{ dir }
 {
 	// create the fill
 	ID2D1SolidColorBrush* pSolidBrush = nullptr;

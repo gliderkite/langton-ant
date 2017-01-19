@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Direct2DInterop;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace lant
@@ -43,6 +32,7 @@ namespace lant
         private readonly DispatcherTimer timer = new DispatcherTimer();
 
 
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -51,9 +41,8 @@ namespace lant
             InitializeComponent();
 
             // initialize the timer
-            timer.Tick += DispatcherTimer_Tick; ;
-            timer.Interval = TimeSpan.FromMilliseconds(1);
-            timer.Start();
+            timer.Tick += DispatcherTimer_Tick;
+            timer.Interval = TimeSpan.FromMilliseconds(100);            
         }
 
 
@@ -81,7 +70,7 @@ namespace lant
         }
 
 
-        // <summary>
+        /// <summary>
         /// Thie event signals the viewport host window has been properly created.
         /// </summary>
         /// <param name="hwndHost">Pointer to the native HWND host window.</param>
@@ -92,19 +81,20 @@ namespace lant
                 Debug.Assert(hwndHost != IntPtr.Zero);
                 Debug.Assert(engine == null);
                 engine = new LAntEngine(hwndHost);
-                //engine.ShowGrid();
-                engine.SetOffset(300, 300);
+                engine.SetOffset((float)Width / 2, (float)Height / 2);
 
                 // subscribe to the WndProc
                 Viewport.ProcessMessage += Viewport_ProcessMessage;
+
+                Debug.Assert(timer != null);
+                timer.Start();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Unhandled exception!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-
+        
 
         /// <summary>
         /// Custom window procedure event handler.

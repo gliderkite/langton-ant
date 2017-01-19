@@ -13,14 +13,15 @@ namespace lant
 	class Ant final : public gengine::Shape
 	{
 	public:
-
-
+		
 
 		/// <summary>
 		/// Default constructor.
 		/// </summary>
 		/// <param name="pRenderTarget">Render target used to create the fill and the stroke.</param>
-		explicit Ant(ID2D1RenderTarget* pRenderTarget);
+		/// <param name="dir">Starting direction.</param>
+		/// <param name="radius">Ellipse radius.</param>
+		explicit Ant(ID2D1RenderTarget* pRenderTarget, eDirection dir, float radius);
 
 
 		/// <summary>
@@ -31,13 +32,6 @@ namespace lant
 		/// <returns></returns>
 		void draw(ID2D1RenderTarget* pRenderTarget, const D2D1_MATRIX_3X2_F& worldTransform) const noexcept override;
 		
-		/// <summary>
-		/// Sets the ant offset.
-		/// </summary>
-		/// <param name="dx">Delta abscissa.</param>
-		/// <param name="dy">Delta ordinate.</param>
-		/// <returns></returns>
-		void set_offset(float dx, float dy) noexcept;
 
 		/// <summary>
 		/// Gets the current ant offset.
@@ -73,7 +67,19 @@ namespace lant
 
 
 
+
 	private:
+		
+
+		/// <summary>
+		/// Sets the ant offset.
+		/// </summary>
+		/// <param name="dx">Delta abscissa.</param>
+		/// <param name="dy">Delta ordinate.</param>
+		/// <returns></returns>
+		void set_offset(float dx, float dy) noexcept;
+
+
 
 		/// <summary>
 		/// The ant shape.
