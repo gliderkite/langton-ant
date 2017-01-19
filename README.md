@@ -10,6 +10,11 @@ Squares on a plane are colored variously either black or white. We arbitrarily i
     At a black square, turn 90° left, flip the color of the square, move forward one unit
 
 
+## Usage
+
+Drag the canvas by pressing the mouse left button, zoom in/out by using the mouse wheel.
+
+
 ![image](https://s29.postimg.org/ylz8rdxiv/lant.png)
 
 ![image](https://s28.postimg.org/dugqlcnp9/lant2.png)
