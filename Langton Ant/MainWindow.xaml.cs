@@ -264,6 +264,23 @@ namespace lant
         }
 
 
+        /// <summary>
+        /// Interval TextBox text changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IntervalTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                Debug.Assert(timer != null);
+                timer.Interval = TimeSpan.FromMilliseconds(int.Parse(IntervalTextBox.Text));
+            }
+            catch
+            { }
+        }
+
+
         #endregion
 
     }

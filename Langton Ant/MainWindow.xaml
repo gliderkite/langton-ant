@@ -15,14 +15,19 @@
                 
                 <!-- Play/Pause button -->
                 <Button x:Name="PlayButton" Background="Transparent" Margin="2" Click="PlayButton_Click"
-                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Play">
+                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Play" IsTabStop="False">
                     <Image x:Name="PlayButtonImage" Source="play.png" />
                 </Button>
 
                 <Button x:Name="StopButton" Background="Transparent" Margin="2" Click="StopButton_Click"
-                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Play">
+                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Stop" IsTabStop="False">
                     <Image Source="stop.png" />
                 </Button>
+
+                <TextBlock Margin="5,0" VerticalAlignment="Center">Refresh interval</TextBlock>
+                <TextBox x:Name="IntervalTextBox" Width="40" Height="18" TextAlignment="Center" 
+                         TextChanged="IntervalTextBox_TextChanged" IsTabStop="False">100</TextBox>
+                <TextBlock Margin="5,0" VerticalAlignment="Center">ms</TextBlock>
 
             </StackPanel>
         </Border>
