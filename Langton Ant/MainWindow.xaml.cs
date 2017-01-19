@@ -52,7 +52,7 @@ namespace lant
 
             // initialize the timer
             timer.Tick += DispatcherTimer_Tick; ;
-            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Start();
         }
 
@@ -73,7 +73,7 @@ namespace lant
                 if (engine != null)
                 {
                     engine.Step();
-                    //engine.Refresh();
+                    engine.Refresh();
                 }
             }
             catch

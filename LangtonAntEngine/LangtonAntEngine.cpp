@@ -1,12 +1,16 @@
 #include "stdafx.h"
 #include "LangtonAntEngine.h"
+#include "Ant.h"
 using namespace lant;
+using namespace std;
 
 
 
 LAntEngine::LAntEngine(IntPtr hostPtr)
 	: pGraphicEngine{ nullptr },
-	hwndHost{ reinterpret_cast<HWND>(hostPtr.ToPointer()) }
+	hwndHost{ reinterpret_cast<HWND>(hostPtr.ToPointer()) },
+	pGraphics{ nullptr },
+	pAnt{ nullptr }
 {
 	// create and initialize the graphic engine
 	pGraphicEngine = new GraphicEngine();
@@ -23,12 +27,19 @@ LAntEngine::LAntEngine(IntPtr hostPtr)
 	// check if initialization failed
 	if (FAILED(hres))
 		throw gcnew ExternalException("Graphic engine initialization error", hres);
-}
 
+	// create the list of graphics
+	pGraphics = new vector<unique_ptr<Graphic>>();
+	// add the ant
+	pGraphics->emplace_back(new Ant(pGraphicEngine->get_device_context()));
+	pAnt = dynamic_cast<Ant*>(pGraphics->front().get());
+	assert(pAnt);
+}
 
 
 LAntEngine::~LAntEngine()
 {
+	delete pGraphics;
 }
 
 
@@ -54,7 +65,10 @@ HRESULT LAntEngine::Resize(UINT width, UINT height)
 HRESULT LAntEngine::Refresh()
 {
 	if (pGraphicEngine)
-		return pGraphicEngine->refresh();
+	{
+		if (pGraphics)
+			return pGraphicEngine->refresh(*pGraphics);
+	}
 
 	return E_FAIL;
 }
@@ -130,5 +144,10 @@ void LAntEngine::ShowGrid()
 
 void LAntEngine::Step()
 {
-
+	if (pAnt)
+	{
+		const auto signx = (rand() % 2 > 0 ? 1 : -1);
+		const auto signy = (rand() % 2 > 0 ? 1 : -1);
+		pAnt->move(signx * 30, signy * 30);
+	}
 }

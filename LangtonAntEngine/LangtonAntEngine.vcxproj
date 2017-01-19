@@ -133,18 +133,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ant.h" />
+    <ClInclude Include="FilledGraphic.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicEngine.h" />
     <ClInclude Include="LangtonAntEngine.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="StrokedGraphic.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ant.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="GraphicEngine.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CompileAsManaged>
     </ClCompile>
     <ClCompile Include="LangtonAntEngine.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

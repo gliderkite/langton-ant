@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Graphic.h"
+
 #include <vector>
 #include <memory>
 
@@ -100,7 +102,7 @@ namespace lant
 		/// Refreshes the viewport.
 		/// </summary>
 		/// <returns>Returns the operation's outcome.</returns>
-		HRESULT refresh() const noexcept;
+		HRESULT refresh(const std::vector<std::unique_ptr<Graphic>>& graphics) const noexcept;
 
 		/// <summary>
 		/// Reset world transformation.

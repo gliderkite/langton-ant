@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lant"
         xmlns:lant="clr-namespace:lant;assembly=LangtonAntEngine"
-        Title="Langton's Ant" Height="350" Width="525" Icon="logo.png">
+        Title="Langton's Ant" Height="500" Width="700" Icon="logo.png">
     
     <Grid>
         <local:Viewport x:Name="Viewport" BuildWindowCoreCompleted="Viewport_BuildWindowCoreCompleted" />

@@ -3,6 +3,7 @@ using namespace System;
 using namespace System::Runtime::InteropServices;
 
 #include "GraphicEngine.h"
+#include "Ant.h"
 
 
 namespace lant 
@@ -126,6 +127,16 @@ namespace lant
 		/// Viewport host window.
 		/// </summary>
 		HWND hwndHost;
+
+		/// <summary>
+		/// Native pointer to the list of graphics.
+		/// </summary>
+		std::vector<std::unique_ptr<Graphic>>* pGraphics;
+
+		/// <summary>
+		/// Native pointer to the ant graphics.
+		/// </summary>
+		Ant* pAnt;
 
 	};
 }

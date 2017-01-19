@@ -395,7 +395,7 @@ ID2D1DeviceContext* GraphicEngine::get_device_context() const noexcept
 }
 
 
-HRESULT GraphicEngine::refresh() const noexcept
+HRESULT GraphicEngine::refresh(const vector<unique_ptr<Graphic>>& graphics) const noexcept
 {
 	if (!d2dContext)
 		return E_FAIL;
@@ -403,10 +403,13 @@ HRESULT GraphicEngine::refresh() const noexcept
 	d2dContext->BeginDraw();
 	d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::White));
 	const auto t = get_world_transform();
-	const auto a = get_visible_area();	
+	//const auto a = get_visible_area();	
 
 	if (isGridVisible)
 		draw_grid(D2D1::ColorF(D2D1::ColorF::Black), 30.f, 0.5f);
+
+	for (const auto& g : graphics)
+		g->draw(d2dContext, t);
 
 	auto hr = d2dContext->EndDraw();
 
@@ -435,28 +438,16 @@ HRESULT GraphicEngine::draw_grid(const D2D1_COLOR_F& color, float space, float t
 		const auto clientRect = d2dContext->GetSize();
 
 		assert(zoom > 0);
-		const auto step = space * zoom;
 		const auto linethick = thickness / zoom;
 
-		// draw vertical lines
-		for (float i = 0; i < clientRect.width; i += step)
+		// draw fixed size grid
+		for (float i = -0xfff; i < 0xfff; i += space)
 		{
-			const auto x = i / zoom - offset.x;
-			const auto pt1 = D2D1::Point2F(x, -offset.y);
-			const auto pt2 = D2D1::Point2F(x, clientRect.height / zoom - offset.y);
-
-			d2dContext->DrawLine(pt1, pt2, stroke, linethick);
-		}
-		
-		// draw horizzontal lines
-		for (float i = 0; i < clientRect.height; i += step)
-		{
-			const auto y = i / zoom - offset.y;
-			const auto pt1 = D2D1::Point2F(-offset.x, y);
-			const auto pt2 = D2D1::Point2F(clientRect.width / zoom - offset.x, y);
-
-			d2dContext->DrawLine(pt1, pt2, stroke, linethick);
-		}
+			// draw vertical lines
+			d2dContext->DrawLine(D2D1::Point2F(i, -0xfff), D2D1::Point2F(i, 0xfff), stroke, linethick);
+			// draw horizzontal lines
+			d2dContext->DrawLine(D2D1::Point2F(-0xfff, i), D2D1::Point2F(0xfff, i), stroke, linethick);
+		}	
 	}
 
 	return hr;
