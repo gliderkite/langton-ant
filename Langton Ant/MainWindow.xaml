@@ -33,10 +33,14 @@
         </Border>
         
         <!-- Status bar -->
-        <StatusBar DockPanel.Dock="Bottom" Height="20" HorizontalContentAlignment="Stretch">
-            <TextBlock x:Name="StatusTextBlock" />
+        <StatusBar DockPanel.Dock="Bottom" Height="22" >
+            <TextBlock x:Name="StatusTextBlock">Iteration: 0</TextBlock>
             <StatusBarItem HorizontalAlignment="Right" Margin="3,0">
-                <TextBlock HorizontalAlignment="Right" FontStyle="Italic">2017 Marco Conte</TextBlock>
+                <TextBlock HorizontalAlignment="Right" FontStyle="Italic">2017 Marco Conte - 
+                    <Hyperlink NavigateUri="https://en.wikipedia.org/wiki/Langton's_ant" RequestNavigate="Hyperlink_RequestNavigate">
+                        Wikipedia
+                    </Hyperlink>
+                </TextBlock>
             </StatusBarItem>
         </StatusBar>
 
