@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-namespace PhaseZero
+namespace lant
 {
     /// <summary>
     /// Build Window Core delegate,

@@ -431,15 +431,32 @@ HRESULT GraphicEngine::draw_grid(const D2D1_COLOR_F& color, float space, float t
 
 	if (SUCCEEDED(hr))
 	{
-		d2dContext->SetTransform(D2D1::IdentityMatrix());
+		d2dContext->SetTransform(get_world_transform());
 		const auto clientRect = d2dContext->GetSize();
 
-		// draw horizontal lines
-		for (float i = 0; i < clientRect.height; i += space)
-			d2dContext->DrawLine(D2D1::Point2F(0, i), D2D1::Point2F(clientRect.width, i), stroke, thickness);
+		assert(zoom > 0);
+		const auto step = space * zoom;
+		const auto linethick = thickness / zoom;
+
 		// draw vertical lines
-		for (float i = 0; i < clientRect.width; i += space)
-			d2dContext->DrawLine(D2D1::Point2F(i, 0), D2D1::Point2F(i, clientRect.height), stroke, thickness);
+		for (float i = 0; i < clientRect.width; i += step)
+		{
+			const auto x = i / zoom - offset.x;
+			const auto pt1 = D2D1::Point2F(x, -offset.y);
+			const auto pt2 = D2D1::Point2F(x, clientRect.height / zoom - offset.y);
+
+			d2dContext->DrawLine(pt1, pt2, stroke, linethick);
+		}
+		
+		// draw horizzontal lines
+		for (float i = 0; i < clientRect.height; i += step)
+		{
+			const auto y = i / zoom - offset.y;
+			const auto pt1 = D2D1::Point2F(-offset.x, y);
+			const auto pt2 = D2D1::Point2F(clientRect.width / zoom - offset.x, y);
+
+			d2dContext->DrawLine(pt1, pt2, stroke, linethick);
+		}
 	}
 
 	return hr;
