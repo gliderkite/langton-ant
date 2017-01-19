@@ -182,7 +182,6 @@ void LAntEngine::Reset()
 
 	if (pGraphics->size() > 1)
 	{
-
 		// remove all the cells but the ant
 		pGraphics->erase(pGraphics->begin(), pGraphics->end() - 1);
 	}
