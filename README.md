@@ -13,3 +13,8 @@ Squares on a plane are colored variously either black or white. We arbitrarily i
 ![image](https://s29.postimg.org/ylz8rdxiv/lant.png)
 
 ![image](https://s28.postimg.org/dugqlcnp9/lant2.png)
+
+
+## Download
+
+https://gliderkite.itch.io/langtons-ant
