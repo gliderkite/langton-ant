@@ -6,9 +6,20 @@
         xmlns:d2d="clr-namespace:Direct2DInterop"
         xmlns:lant="clr-namespace:lant;assembly=LangtonAntEngine"
         Title="Langton's Ant" Height="500" Width="700" Icon="logo.png">
-    
-    <Grid>
+
+    <DockPanel LastChildFill="True">
+
+        <!-- Status bar -->
+        <StatusBar DockPanel.Dock="Bottom" Height="20" HorizontalContentAlignment="Stretch">
+            <TextBlock x:Name="StatusTextBlock" />
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" FontStyle="Italic">2017 Marco Conte</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Render target -->
         <d2d:Viewport x:Name="Viewport" BuildWindowCoreCompleted="Viewport_BuildWindowCoreCompleted" />
-    </Grid>
+
+    </DockPanel>
     
 </Window>

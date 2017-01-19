@@ -27,6 +27,11 @@ namespace lant
         private Point mouseup;
 
         /// <summary>
+        /// Iteration counter.
+        /// </summary>
+        private int iteration = 0;
+
+        /// <summary>
         /// Timer used to go to the next generation step.
         /// </summary>
         private readonly DispatcherTimer timer = new DispatcherTimer();
@@ -63,6 +68,8 @@ namespace lant
                 {
                     engine.Step();
                     engine.Refresh();
+
+                    StatusTextBlock.Text = String.Format("Iteration: {0}", ++iteration);
                 }
             }
             catch
