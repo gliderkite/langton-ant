@@ -3,8 +3,7 @@
 #include "Ant.h"
 #include "Cell.h"
 using namespace lant;
-
-#include <algorithm>
+using namespace gengine;
 using namespace std;
 
 
@@ -121,31 +120,6 @@ float LAntEngine::GetZoom()
 
 	return 1.f;
 }
-
-
-bool LAntEngine::IsGridVisible()
-{
-	if (pGraphicEngine)
-		return pGraphicEngine->is_grid_visible();
-
-	return false;
-}
-
-
-void LAntEngine::HideGrid()
-{
-	if (pGraphicEngine)
-		return pGraphicEngine->hide_grid();
-}
-
-
-void LAntEngine::ShowGrid()
-{
-	if (pGraphicEngine)
-		return pGraphicEngine->show_grid();
-}
-
-
 
 
 void LAntEngine::Step()

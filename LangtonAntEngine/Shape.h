@@ -6,7 +6,7 @@
 
 
 
-namespace lant
+namespace gengine
 {
 	/// <summary>
 	/// Basic graphic element shape with fill and stroke.

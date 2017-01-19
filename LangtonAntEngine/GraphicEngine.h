@@ -6,7 +6,7 @@
 #include <memory>
 
 
-namespace lant
+namespace gengine
 {
 	/// <summary>
 	/// Graphic engine.
@@ -152,24 +152,6 @@ namespace lant
 		D2D1_MATRIX_3X2_F get_world_transform() const noexcept;
 
 		/// <summary>
-		/// Returns true only if the viewport grid is visible.
-		/// </summary>
-		/// <returns></returns>
-		bool is_grid_visible() const noexcept;
-
-		/// <summary>
-		/// Hides the viewport grid.
-		/// </summary>
-		/// <returns></returns>
-		void hide_grid() noexcept;
-
-		/// <summary>
-		/// Shows the viewport grid.
-		/// </summary>
-		/// <returns></returns>
-		void show_grid() noexcept;
-
-		/// <summary>
 		/// Gets the current visible area according to zoom and offset.
 		/// </summary>
 		/// <returns></returns>
@@ -206,15 +188,6 @@ namespace lant
 		/// <returns></returns>
 		CComPtr<IDXGISwapChain1> create_swap_chain(HWND hwnd) const noexcept;
 
-		/// <summary>
-		/// Draw the grid.
-		/// </summary>
-		/// <param name="color">Stroke color.</param>
-		/// <param name="space">Space between lines.</param>
-		/// <param name="thickness">Stroke thickness.</param>
-		/// <returns></returns>
-		HRESULT draw_grid(const D2D1_COLOR_F& color, float space, float thickness) const noexcept;
-
 
 
 
@@ -235,7 +208,5 @@ namespace lant
 
 		float zoom;										// Current zoom
 		D2D1_POINT_2F offset;							// Current offset
-
-		bool isGridVisible;								// Flag true only if the viewport grid is visible
 	};
 }

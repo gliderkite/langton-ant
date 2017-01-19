@@ -5,7 +5,7 @@
 #include <atlbase.h>
 
 
-namespace lant
+namespace gengine
 {
 	/// <summary>
 	/// Graphic element with fill.

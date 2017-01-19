@@ -10,7 +10,7 @@ namespace lant
 	/// <summary>
 	/// The ant graphics.
 	/// </summary>
-	class Ant final : public Shape
+	class Ant final : public gengine::Shape
 	{
 	public:
 

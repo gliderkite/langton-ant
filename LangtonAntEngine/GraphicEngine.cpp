@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "GraphicEngine.h"
-using namespace lant;
+using namespace gengine;
 using namespace std;
 
 
@@ -22,8 +22,7 @@ GraphicEngine::GraphicEngine()
 	dpiX{ 96.f },
 	dpiY{ 96.f },
 	zoom(1.f),
-	offset(D2D1::Point2F()),
-	isGridVisible(false)
+	offset(D2D1::Point2F())
 {	
 }
 
@@ -403,13 +402,13 @@ HRESULT GraphicEngine::refresh(const vector<unique_ptr<Graphic>>& graphics) cons
 	d2dContext->BeginDraw();
 	d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::White));
 	const auto t = get_world_transform();
-	//const auto a = get_visible_area();	
 
-	if (isGridVisible)
-		draw_grid(D2D1::ColorF(D2D1::ColorF::Black), 30.f, 0.5f);
-
+	// iterate and draw graphics
 	for (const auto& g : graphics)
-		g->draw(d2dContext, t);
+	{
+		if (g)
+			g->draw(d2dContext, t);
+	}
 
 	auto hr = d2dContext->EndDraw();
 
@@ -424,33 +423,6 @@ void GraphicEngine::reset() noexcept
 {
 	zoom = 1.f;
 	offset.x = offset.y = 0;
-}
-
-
-HRESULT GraphicEngine::draw_grid(const D2D1_COLOR_F& color, float space, float thickness) const noexcept
-{
-	CComPtr<ID2D1SolidColorBrush> stroke;
-	const auto hr = d2dContext->CreateSolidColorBrush(color, &stroke);
-
-	if (SUCCEEDED(hr))
-	{
-		d2dContext->SetTransform(get_world_transform());
-		const auto clientRect = d2dContext->GetSize();
-
-		assert(zoom > 0);
-		const auto linethick = thickness / zoom;
-
-		// draw fixed size grid
-		for (float i = -0xfff; i < 0xfff; i += space)
-		{
-			// draw vertical lines
-			d2dContext->DrawLine(D2D1::Point2F(i, -0xfff), D2D1::Point2F(i, 0xfff), stroke, linethick);
-			// draw horizzontal lines
-			d2dContext->DrawLine(D2D1::Point2F(-0xfff, i), D2D1::Point2F(0xfff, i), stroke, linethick);
-		}	
-	}
-
-	return hr;
 }
 
 
@@ -505,24 +477,6 @@ D2D1_MATRIX_3X2_F GraphicEngine::get_world_transform() const noexcept
 {
 	assert(zoom > 0);
 	return D2D1::Matrix3x2F::Translation(offset.x, offset.y) * D2D1::Matrix3x2F::Scale(zoom, zoom);
-}
-
-
-bool GraphicEngine::is_grid_visible() const noexcept
-{
-	return isGridVisible;
-}
-
-
-void GraphicEngine::hide_grid() noexcept
-{
-	isGridVisible = false;
-}
-
-
-void GraphicEngine::show_grid() noexcept
-{
-	isGridVisible = true;
 }
 
 

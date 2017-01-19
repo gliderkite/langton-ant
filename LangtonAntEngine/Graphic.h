@@ -5,7 +5,7 @@
 
 
 
-namespace lant
+namespace gengine
 {
 	/// <summary>
 	/// Base graphic element.

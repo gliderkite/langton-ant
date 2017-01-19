@@ -90,25 +90,6 @@ namespace lant
 		/// <returns></returns>
 		float GetZoom();
 
-		/// <summary>
-		/// Returns true only if the viewport grid is visible.
-		/// </summary>
-		/// <returns></returns>
-		bool IsGridVisible();
-
-		/// <summary>
-		/// Hides the viewport grid.
-		/// </summary>
-		/// <returns></returns>
-		void HideGrid();
-
-		/// <summary>
-		/// Shows the viewport grid.
-		/// </summary>
-		/// <returns></returns>
-		void ShowGrid();
-
-
 
 		/// <summary>
 		/// Go to the next generation step.
@@ -124,7 +105,7 @@ namespace lant
 		/// <summary>
 		/// Native pointer to the graphic engine.
 		/// </summary>
-		GraphicEngine* pGraphicEngine;
+		gengine::GraphicEngine* pGraphicEngine;
 
 		/// <summary>
 		/// Viewport host window.
@@ -134,15 +115,17 @@ namespace lant
 		/// <summary>
 		/// Native pointer to the list of graphics.
 		/// </summary>
-		std::vector<std::unique_ptr<Graphic>>* pGraphics;
+		std::vector<std::unique_ptr<gengine::Graphic>>* pGraphics;
 
 		/// <summary>
 		/// Native pointer to the ant graphics.
 		/// </summary>
 		Ant* pAnt;
 
-
-		std::map<std::pair<float, float>, Graphic*>* pCells;
+		/// <summary>
+		/// Map of cells. The key is the cell location.
+		/// </summary>
+		std::map<std::pair<float, float>, gengine::Graphic*>* pCells;
 
 	};
 }

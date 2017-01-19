@@ -1,7 +1,7 @@
 #include "Stdafx.h"
 #include "Shape.h"
 #include "GraphicEngine.h"
-using namespace lant;
+using namespace gengine;
 
 
 

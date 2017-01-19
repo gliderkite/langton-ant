@@ -1,68 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Graphic Engine">
+      <UniqueIdentifier>{94e29623-4f2f-4a6f-96cb-2b65a4e89955}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{0d57f051-9196-4bd6-b242-5604360d3eb0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LangtonAntEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="FilledGraphic.h">
+      <Filter>Graphic Engine</Filter>
     </ClInclude>
     <ClInclude Include="Graphic.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphic Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Ant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilledGraphic.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GraphicEngine.h">
+      <Filter>Graphic Engine</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphic Engine</Filter>
     </ClInclude>
     <ClInclude Include="StrokedGraphic.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphic Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="Ant.h">
+      <Filter>Logic</Filter>
     </ClInclude>
     <ClInclude Include="Cell.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic</Filter>
     </ClInclude>
     <ClInclude Include="Direction.h">
-      <Filter>Header Files</Filter>
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="LangtonAntEngine.h">
+      <Filter>Logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LangtonAntEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AssemblyInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GraphicEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ant.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Graphic Engine</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Graphic Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Stdafx.cpp" />
+    <ClCompile Include="Ant.cpp">
+      <Filter>Logic</Filter>
     </ClCompile>
     <ClCompile Include="Cell.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="LangtonAntEngine.cpp">
+      <Filter>Logic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
