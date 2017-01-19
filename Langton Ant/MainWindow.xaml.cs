@@ -52,7 +52,7 @@ namespace lant
 
             // initialize the timer
             timer.Tick += DispatcherTimer_Tick; ;
-            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.Start();
         }
 
@@ -92,7 +92,8 @@ namespace lant
                 Debug.Assert(hwndHost != IntPtr.Zero);
                 Debug.Assert(engine == null);
                 engine = new LAntEngine(hwndHost);
-                engine.ShowGrid();
+                //engine.ShowGrid();
+                engine.SetOffset(300, 300);
 
                 // subscribe to the WndProc
                 Viewport.ProcessMessage += Viewport_ProcessMessage;

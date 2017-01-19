@@ -134,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ant.h" />
+    <ClInclude Include="Cell.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="FilledGraphic.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="GraphicEngine.h" />
@@ -145,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Ant.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="GraphicEngine.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</CompileAsManaged>

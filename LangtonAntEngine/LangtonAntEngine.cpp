@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "LangtonAntEngine.h"
 #include "Ant.h"
+#include "Cell.h"
 using namespace lant;
+
+#include <algorithm>
 using namespace std;
 
 
@@ -30,10 +33,13 @@ LAntEngine::LAntEngine(IntPtr hostPtr)
 
 	// create the list of graphics
 	pGraphics = new vector<unique_ptr<Graphic>>();
+	pGraphics->reserve(0xFFFF);
 	// add the ant
 	pGraphics->emplace_back(new Ant(pGraphicEngine->get_device_context()));
 	pAnt = dynamic_cast<Ant*>(pGraphics->front().get());
 	assert(pAnt);
+	// create the cells map
+	pCells = new map<pair<float, float>, Graphic*>();
 }
 
 
@@ -144,10 +150,49 @@ void LAntEngine::ShowGrid()
 
 void LAntEngine::Step()
 {
-	if (pAnt)
+	if (!pAnt)
+		return;
+
+	/* The "ant" moves according to the rules below:
+	At a white square, turn 90° right, flip the color of the square, move forward one unit
+	At a black square, turn 90° left, flip the color of the square, move forward one unit */
+
+	auto offset = pAnt->get_offset();
+	offset.x -= 15;
+	offset.y -= 15;
+	const auto key = make_pair(offset.x, offset.y);
+	const auto it = pCells->find(key);
+
+	if (it == pCells->end())
 	{
-		const auto signx = (rand() % 2 > 0 ? 1 : -1);
-		const auto signy = (rand() % 2 > 0 ? 1 : -1);
-		pAnt->move(signx * 30, signy * 30);
+		// white (empty) square
+		pAnt->turn_right();
+		pAnt->move_forward(30, 30);
+
+		// add the cell to the map
+		pGraphics->emplace(pGraphics->begin(), new Cell(pGraphicEngine->get_device_context(), offset, 30));
+		const auto cell = dynamic_cast<Cell*>(pGraphics->front().get());
+		assert(cell);
+		pCells->emplace(key, cell);
+	}
+	else
+	{
+		// black square
+		pAnt->turn_left();
+		pAnt->move_forward(30, 30);
+
+		auto i = pGraphics->begin();
+		for (; i != pGraphics->end(); ++i)
+		{
+			if (i->get() == it->second)
+				break;
+		}
+
+		if (i != pGraphics->end())
+		{
+			// remove the cell
+			pGraphics->erase(i);
+			pCells->erase(it);
+		}
 	}
 }

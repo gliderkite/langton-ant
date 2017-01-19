@@ -23,6 +23,11 @@ namespace lant
 		{
 		}
 
+		/// <summary>
+		/// Destructor.
+		/// </summary>
+		virtual ~FilledGraphic() noexcept = default;
+
 
 		/// <summary>
 		/// Delete move constructor.

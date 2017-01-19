@@ -5,6 +5,9 @@ using namespace System::Runtime::InteropServices;
 #include "GraphicEngine.h"
 #include "Ant.h"
 
+#include <map>
+#include <utility>
+
 
 namespace lant 
 {
@@ -137,6 +140,9 @@ namespace lant
 		/// Native pointer to the ant graphics.
 		/// </summary>
 		Ant* pAnt;
+
+
+		std::map<std::pair<float, float>, Graphic*>* pCells;
 
 	};
 }

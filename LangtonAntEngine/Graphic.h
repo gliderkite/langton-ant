@@ -23,6 +23,11 @@ namespace lant
 		{
 		}
 
+		/// <summary>
+		/// Destructor.
+		/// </summary>
+		virtual ~Graphic() noexcept = default;
+
 
 		/// <summary>
 		/// Draws the graphic element.

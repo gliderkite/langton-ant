@@ -15,6 +15,13 @@ namespace lant
 	{
 	public:
 
+
+		/// <summary>
+		/// Destructor.
+		/// </summary>
+		virtual ~Shape() noexcept = default;
+
+
 		/// <summary>
 		/// Returns true only if the shape intersects the given rectangle, otherwise returns false.
 		/// </summary>
