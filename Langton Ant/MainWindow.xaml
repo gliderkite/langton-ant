@@ -5,14 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d2d="clr-namespace:Direct2DInterop"
         xmlns:lant="clr-namespace:lant;assembly=LangtonAntEngine"
-        Title="Langton's Ant" Height="500" Width="700" Icon="logo.png">
+        Title="Langton's Ant" Height="500" Width="700" Icon="ant.png">
 
     <DockPanel LastChildFill="True">
 
+        <!-- Menu -->
+        <Border DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                
+                <!-- Play/Pause button -->
+                <Button x:Name="PlayButton" Background="Transparent" Margin="2" Click="PlayButton_Click"
+                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Play">
+                    <Image x:Name="PlayButtonImage" Source="play.png" />
+                </Button>
+
+                <Button x:Name="StopButton" Background="Transparent" Margin="2" Click="StopButton_Click"
+                        BorderBrush="{x:Null}" Height="25" Width="25" ToolTip="Play">
+                    <Image Source="stop.png" />
+                </Button>
+
+            </StackPanel>
+        </Border>
+        
         <!-- Status bar -->
         <StatusBar DockPanel.Dock="Bottom" Height="20" HorizontalContentAlignment="Stretch">
             <TextBlock x:Name="StatusTextBlock" />
-            <StatusBarItem HorizontalAlignment="Right">
+            <StatusBarItem HorizontalAlignment="Right" Margin="3,0">
                 <TextBlock HorizontalAlignment="Right" FontStyle="Italic">2017 Marco Conte</TextBlock>
             </StatusBarItem>
         </StatusBar>

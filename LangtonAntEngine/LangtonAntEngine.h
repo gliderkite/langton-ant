@@ -92,9 +92,14 @@ namespace lant
 		float GetZoom();
 
 		/// <summary>
-		/// Go to the next generation step.
+		/// Goes to the next generation step.
 		/// </summary>
 		void Step();
+
+		/// <summary>
+		/// Resets environment.
+		/// </summary>
+		void Reset();
 
 
 

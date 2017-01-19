@@ -10,7 +10,7 @@ Ant::Ant(ID2D1RenderTarget* pRenderTarget, eDirection dir, float radius)
 {
 	// create the fill
 	ID2D1SolidColorBrush* pSolidBrush = nullptr;
-	auto hr = pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), &pSolidBrush);
+	auto hr = pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Green), &pSolidBrush);
 
 	// check operation's outcome
 	if (FAILED(hr))
@@ -19,7 +19,7 @@ Ant::Ant(ID2D1RenderTarget* pRenderTarget, eDirection dir, float radius)
 	fill = pSolidBrush;
 
 	// create stroke
-	hr = pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &pSolidBrush);
+	hr = pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &pSolidBrush);
 
 	// check operation's outcome
 	if (FAILED(hr))
@@ -121,4 +121,10 @@ void Ant::move_forward(float dx, float dy) noexcept
 	}
 
 	set_offset(signx * dx, signy * dy);
+}
+
+
+void Ant::reset_transform() noexcept
+{
+	transform = D2D1::IdentityMatrix();
 }

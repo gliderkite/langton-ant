@@ -173,3 +173,20 @@ void LAntEngine::Step()
 		pCells->erase(it);
 	}
 }
+
+
+void LAntEngine::Reset()
+{
+	pGraphicEngine->reset();
+	pCells->clear();
+
+	if (pGraphics->size() > 1)
+	{
+
+		// remove all the cells but the ant
+		pGraphics->erase(pGraphics->begin(), pGraphics->end() - 1);
+	}
+
+	assert(pAnt);
+	pAnt->reset_transform();
+}

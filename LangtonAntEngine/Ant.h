@@ -65,6 +65,12 @@ namespace lant
 		/// <returns></returns>
 		void move_forward(float dx, float dy) noexcept;
 
+		/// <summary>
+		/// Resets the matrix transformation.
+		/// </summary>
+		/// <returns></returns>
+		void reset_transform() noexcept;
+
 
 
 

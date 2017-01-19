@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace lant
@@ -52,6 +53,35 @@ namespace lant
 
 
 
+        /// <summary>
+        /// Resets environment.
+        /// </summary>
+        private void Reset()
+        {
+            try
+            {
+                // resed data structures
+                iteration = 0;
+                mousedown = new Point();
+                mouseup = new Point();
+
+                // reset engine
+                if (engine != null)
+                {
+                    engine.Reset();
+                    engine.SetOffset((float)ActualWidth / 2, (float)ActualHeight / 2);
+                    engine.Refresh();
+                }
+
+                // reset gui
+                StatusTextBlock.Text = "Iteration: 0";
+            }
+            catch
+            {   }
+        }
+
+
+
         #region Events
 
 
@@ -92,9 +122,6 @@ namespace lant
 
                 // subscribe to the WndProc
                 Viewport.ProcessMessage += Viewport_ProcessMessage;
-
-                Debug.Assert(timer != null);
-                timer.Start();
             }
             catch (Exception e)
             {
@@ -176,8 +203,68 @@ namespace lant
         }
 
 
+
         #endregion
 
+
+
+        #region Menu
+
+
+
+        /// <summary>
+        /// Play button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Debug.Assert(timer != null);
+
+                if (timer.IsEnabled)
+                {
+                    // timer must be stopped
+                    PlayButtonImage.Source = new BitmapImage(new Uri("play.png", UriKind.Relative));
+                }
+                else
+                {
+                    // timer must be enabled
+                    PlayButtonImage.Source = new BitmapImage(new Uri("pause.png", UriKind.Relative));
+                }
+
+                timer.IsEnabled = !timer.IsEnabled;
+            }
+            catch
+            { }
+        }
+
+
+        /// <summary>
+        /// Stop button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // timer must be stopped
+                PlayButtonImage.Source = new BitmapImage(new Uri("play.png", UriKind.Relative));
+
+                Debug.Assert(timer != null);
+                timer.IsEnabled = false;
+
+                // reset environment
+                Reset();
+            }
+            catch
+            { }
+        }
+
+
+        #endregion
 
     }
 }
